@@ -14,6 +14,7 @@ import urllib.request
 from datetime import datetime, timezone
 
 API_URL = "https://maine.wd5.myworkdayjobs.com/wday/cxs/maine/Executive/jobs"
+DETAIL_API_URL = "https://maine.wd5.myworkdayjobs.com/wday/cxs/maine/Executive"
 JOB_BASE_URL = "https://maine.wd5.myworkdayjobs.com/Executive"
 PAGE_SIZE = 20  # Workday's API rejects anything larger with HTTP 400
 OUTPUT_PATH = "data/executive.json"
@@ -80,6 +81,23 @@ def is_relevant(title):
     return any(pattern.search(lowered) for pattern in TITLE_KEYWORD_PATTERNS)
 
 
+def fetch_job_detail(external_path):
+    """Fetch hiring department + real posted/closing dates for one posting.
+    Only called for already-filtered matches (a handful per run), so the
+    extra request per job is cheap. Returns Nones on any failure so a single
+    bad detail fetch can't take down the whole run.
+    """
+    try:
+        req = urllib.request.Request(DETAIL_API_URL + external_path)
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            detail = json.load(resp)
+        org = detail.get("hiringOrganization", {}).get("name", "")
+        info = detail.get("jobPostingInfo", {})
+        return org, info.get("startDate"), info.get("endDate")
+    except Exception:
+        return "", None, None
+
+
 def load_json(path, default):
     try:
         with open(path) as f:
@@ -105,11 +123,14 @@ def main():
     for p in relevant:
         url = JOB_BASE_URL + p["externalPath"]
         firstSeenOn = previous_jobs_by_url.get(url, {}).get("firstSeenOn", today)
+        org, postedDate, closingDate = fetch_job_detail(p["externalPath"])
         jobs.append(
             {
                 "title": p["title"],
+                "org": org,
                 "location": p.get("locationsText", ""),
-                "postedOn": p.get("postedOn", ""),
+                "postedDate": postedDate or firstSeenOn,
+                "closingDate": closingDate,
                 "url": url,
                 "firstSeenOn": firstSeenOn,
             }
@@ -125,6 +146,7 @@ def main():
                 {
                     "source": SOURCE_NAME,
                     "title": j["title"],
+                    "org": j.get("org", ""),
                     "location": j.get("location", ""),
                     "url": j["url"],
                     "firstSeenOn": j.get("firstSeenOn"),

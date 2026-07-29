@@ -1,49 +1,61 @@
 {
   "source": "Maine Executive Branch (Workday)",
   "sourceSearchUrl": "https://maine.wd5.myworkdayjobs.com/Executive",
-  "generatedAt": "2026-07-29T19:28:49+00:00",
+  "generatedAt": "2026-07-29T19:45:57+00:00",
   "totalPostings": 267,
   "matchedPostings": 6,
   "jobs": [
     {
       "title": "Public Service Manager II (Manager of Planning & Policy) - 1156",
+      "org": "Department of Energy Resources",
       "location": "Augusta, Maine",
-      "postedOn": "Posted Today",
+      "postedDate": "2026-07-29",
+      "closingDate": "2026-08-13",
       "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Public-Service-Manager-II--Manager-of-Planning---Policy----1156_R26-03150",
       "firstSeenOn": "2026-07-29"
     },
     {
       "title": "Secretary Specialist - Executive Assistant - Commissioner's Office",
+      "org": "Department of Professional and Financial Regulation",
       "location": "Gardiner, Maine",
-      "postedOn": "Posted Today",
+      "postedDate": "2026-07-29",
+      "closingDate": "2026-08-13",
       "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Gardiner-Maine/Secretary-Specialist---Executive-Assistant---Commissioner-s-Office_R26-03139",
       "firstSeenOn": "2026-07-29"
     },
     {
       "title": "Public Service Manager III - Director of Digital Services",
+      "org": "Department of Administrative and Financial Services",
       "location": "Augusta, Maine",
-      "postedOn": "Posted 7 Days Ago",
+      "postedDate": "2026-07-22",
+      "closingDate": "2026-08-05",
       "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Public-Service-Manager-III_R26-02999",
       "firstSeenOn": "2026-07-29"
     },
     {
       "title": "Public Service Executive I - Licensing Board Executive Director",
+      "org": "Department of Professional and Financial Regulation",
       "location": "Gardiner, Maine",
-      "postedOn": "Posted 12 Days Ago",
+      "postedDate": "2026-07-17",
+      "closingDate": "2026-08-01",
       "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Gardiner-Maine/Public-Service-Executive-I---Licensing-Board-Executive-Director_R26-02916",
       "firstSeenOn": "2026-07-29"
     },
     {
       "title": "OCFS Policy & Training Specialist",
+      "org": "Department of Health and Human Services",
       "location": "Augusta, Maine",
-      "postedOn": "Posted 12 Days Ago",
+      "postedDate": "2026-07-17",
+      "closingDate": "2026-07-31",
       "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/OCFS-Policy---Training-Specialist_R26-02968",
       "firstSeenOn": "2026-07-29"
     },
     {
       "title": "Public Service Manager II - Director, Division for the Blind and Visually Impaired",
+      "org": "Department of Labor",
       "location": "Augusta, Maine",
-      "postedOn": "Posted 15 Days Ago",
+      "postedDate": "2026-07-14",
+      "closingDate": "2026-08-01",
       "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Public-Service-Manager-II---Director--Division-for-the-Blind-and-Visually-Impaired_R26-02893",
       "firstSeenOn": "2026-07-29"
     }

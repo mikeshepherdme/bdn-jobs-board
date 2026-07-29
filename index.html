@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Maine Politics Jobs Board — BDN Maine Politics Insider</title>
+<title>MPI Jobs Board — Maine Politics Insider</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -13,6 +13,11 @@
     --border: #dedede;
     --accent: #8a1f1f;
     --link: #8a1f1f;
+    --new-bg: #eaf3ea;
+    --new-fg: #2f6b34;
+    --urgent-bg: #fbeaea;
+    --urgent-fg: #a12f2f;
+    --input-bg: #ffffff;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -23,6 +28,11 @@
       --border: #3a2f2b;
       --accent: #e07a5f;
       --link: #e5987e;
+      --new-bg: #1c2e1e;
+      --new-fg: #7fc987;
+      --urgent-bg: #2e1c1c;
+      --urgent-fg: #e28b8b;
+      --input-bg: #201a18;
     }
   }
   * { box-sizing: border-box; }
@@ -33,84 +43,154 @@
     color: var(--fg);
     line-height: 1.45;
   }
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
-  header { margin-bottom: 1.5rem; }
-  header h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
-  header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
-  .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
-  section.column {
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    background: var(--card-bg);
-    min-width: 0;
-  }
-  section.column h2 {
-    font-size: 1.05rem;
-    margin: 0 0 0.25rem;
+  .wrap { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  header { margin-bottom: 1.25rem; }
+  header h1 { font-size: 1.6rem; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
+  header p.tagline { margin: 0 0 0.6rem; color: var(--muted); font-size: 0.95rem; }
+  header p.intro { margin: 0; font-size: 0.92rem; color: var(--fg); max-width: 640px; }
+
+  .controls {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin: 1.25rem 0 0.75rem;
   }
-  section.column .meta {
-    font-size: 0.78rem;
+  .controls input[type="search"] {
+    flex: 1 1 240px;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--fg);
+    font-size: 0.92rem;
+  }
+  .controls select {
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--fg);
+    font-size: 0.9rem;
+  }
+  .result-count {
+    font-size: 0.8rem;
     color: var(--muted);
-    margin-bottom: 0.75rem;
+    margin: 0.5rem 0 0.9rem;
   }
+
   ul.jobs { list-style: none; margin: 0; padding: 0; }
   ul.jobs li {
-    padding: 0.6rem 0;
-    border-top: 1px solid var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card-bg);
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
   }
-  ul.jobs li:first-child { border-top: none; }
-  ul.jobs a {
+  .job-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .job-title {
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--link);
+    text-decoration: none;
+  }
+  .job-title:hover { text-decoration: underline; }
+  .job-meta {
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+  .badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .badge.source { background: var(--border); color: var(--fg); }
+  .badge.new { background: var(--new-bg); color: var(--new-fg); }
+  .badge.urgent { background: var(--urgent-bg); color: var(--urgent-fg); }
+
+  .empty {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+
+  footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  footer .methodology { margin-bottom: 1rem; }
+  footer .sources-list a { color: var(--link); text-decoration: none; }
+  footer .sources-list a:hover { text-decoration: underline; }
+
+  .cta-card {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card-bg);
+    padding: 1rem 1.1rem;
+    font-size: 0.88rem;
+    color: var(--fg);
+  }
+  .cta-card strong { color: var(--fg); }
+  .cta-card a {
     color: var(--link);
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.92rem;
   }
-  ul.jobs a:hover { text-decoration: underline; }
-  ul.jobs .sub {
-    display: block;
-    color: var(--muted);
-    font-size: 0.8rem;
-    margin-top: 0.15rem;
-  }
-  .empty {
-    color: var(--muted);
-    font-size: 0.88rem;
-    font-style: italic;
-    padding: 0.5rem 0;
-  }
-  .browse-all {
-    display: inline-block;
-    margin-top: 0.85rem;
-    font-size: 0.85rem;
-    color: var(--link);
-    text-decoration: none;
-    border-top: 1px solid var(--border);
-    padding-top: 0.6rem;
-    width: 100%;
-  }
-  .browse-all:hover { text-decoration: underline; }
-  footer {
-    margin-top: 2rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
+  .cta-card a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>Maine Politics Jobs Board</h1>
-    <p>Curated for BDN Maine Politics Insider from state, nonprofit and municipal listings.</p>
+    <h1>MPI Jobs Board</h1>
+    <p class="tagline">A companion to Maine Politics Insider</p>
+    <p class="intro">Every weekday morning we scan Maine state government, plus nonprofit and municipal listings, for roles that matter to the people who read this newsletter — the ones who might become the next commissioner, town manager, or government relations hire.</p>
   </header>
-  <div class="board" id="board">
-    <p class="empty">Loading listings…</p>
+
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search by title, organization, or location…">
+    <select id="sort">
+      <option value="newest">Sort: Newest posted</option>
+      <option value="closing">Sort: Closing soonest</option>
+      <option value="source">Sort: Source</option>
+      <option value="title">Sort: Title (A–Z)</option>
+      <option value="location">Sort: Location (A–Z)</option>
+    </select>
   </div>
-  <footer id="footer"></footer>
+  <div class="result-count" id="resultCount"></div>
+
+  <div id="board"><p class="empty">Loading listings…</p></div>
+
+  <footer>
+    <p class="methodology">
+      <strong>How this works:</strong> state listings are pulled automatically each weekday morning from Maine's public Workday job board and filtered to leadership, policy, communications, and legal roles. Nonprofit Maine and MEMUN listings are curated by hand, since both sites restrict automated crawling.
+    </p>
+    <p class="sources-list">
+      Browse full listings directly:
+      <a href="https://maine.wd5.myworkdayjobs.com/Executive" target="_blank" rel="noopener">State Executive Branch</a> ·
+      <a href="https://jobs.nonprofitmaine.org/search" target="_blank" rel="noopener">Nonprofit Maine</a> ·
+      <a href="https://www.memun.org/Municipal-Career-Center" target="_blank" rel="noopener">MEMUN Career Center</a>
+    </p>
+    <div class="cta-card">
+      📩 <strong>MPI Jobs Board is a companion to Maine Politics Insider.</strong>
+      Get the stories behind these jobs — the appointments, exits, and shakeups — before they ever show up here.
+      <a href="#" id="ctaLink">Subscribe →</a>
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -124,91 +204,134 @@ async function loadJson(path) {
   }
 }
 
+function daysBetween(isoA, isoB) {
+  const a = new Date(isoA + "T00:00:00");
+  const b = new Date(isoB + "T00:00:00");
+  return Math.round((b - a) / 86400000);
+}
+
+function todayIso() {
+  const d = new Date();
+  return d.toISOString().slice(0, 10);
+}
+
 function fmtDate(iso) {
-  if (!iso) return "unknown";
-  const d = new Date(iso);
-  return d.toLocaleString(undefined, {
-    dateStyle: "medium",
-    timeStyle: "short",
-  });
+  if (!iso) return "";
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
-function renderJobList(jobs, renderItem) {
-  if (!jobs || jobs.length === 0) {
-    return '<p class="empty">No matching openings right now.</p>';
-  }
-  return '<ul class="jobs">' + jobs.map(renderItem).join("") + "</ul>";
-}
+let ALL_JOBS = [];
 
-function columnHtml({ title, metaHtml, bodyHtml, browseAllUrl, browseAllLabel }) {
-  return `
-    <section class="column">
-      <h2>${title}</h2>
-      <div class="meta">${metaHtml}</div>
-      ${bodyHtml}
-      <a class="browse-all" href="${browseAllUrl}" target="_blank" rel="noopener">${browseAllLabel} →</a>
-    </section>
-  `;
-}
-
-async function render() {
+async function loadAllJobs() {
   const [executive, manual] = await Promise.all([
     loadJson("data/executive.json"),
     loadJson("data/manual.json"),
   ]);
 
-  const columns = [];
+  const jobs = [];
 
   if (executive) {
-    columns.push(
-      columnHtml({
-        title: "State Executive Branch",
-        metaHtml: `Updated ${fmtDate(executive.generatedAt)} · ${executive.matchedPostings} of ${executive.totalPostings} open postings matched`,
-        bodyHtml: renderJobList(
-          executive.jobs,
-          (j) => `
-            <li>
-              <a href="${j.url}" target="_blank" rel="noopener">${j.title}</a>
-              <span class="sub">${j.location}${j.postedOn ? " · " + j.postedOn : ""}</span>
-            </li>
-          `
-        ),
-        browseAllUrl: executive.sourceSearchUrl,
-        browseAllLabel: "Browse all state openings",
-      })
-    );
+    for (const j of executive.jobs) {
+      jobs.push({ ...j, source: "State Executive Branch" });
+    }
   }
-
   if (manual) {
     for (const source of manual.sources) {
-      columns.push(
-        columnHtml({
-          title: source.name,
-          metaHtml: source.lastUpdated
-            ? `Manually updated ${fmtDate(source.lastUpdated)}`
-            : "Not yet manually updated — browse the source directly",
-          bodyHtml: renderJobList(
-            source.jobs,
-            (j) => `
-              <li>
-                <a href="${j.url}" target="_blank" rel="noopener">${j.title}</a>
-                <span class="sub">${[j.org, j.location, j.postedOn].filter(Boolean).join(" · ")}</span>
-              </li>
-            `
-          ),
-          browseAllUrl: source.searchUrl,
-          browseAllLabel: "Browse all openings",
-        })
-      );
+      for (const j of source.jobs) {
+        jobs.push({ ...j, source: source.name });
+      }
+    }
+  }
+  return jobs;
+}
+
+function matchesSearch(job, query) {
+  if (!query) return true;
+  const haystack = [job.title, job.org, job.location, job.source].filter(Boolean).join(" ").toLowerCase();
+  return haystack.includes(query.toLowerCase());
+}
+
+function sortJobs(jobs, mode) {
+  const sorted = [...jobs];
+  switch (mode) {
+    case "newest":
+      sorted.sort((a, b) => (b.postedDate || "").localeCompare(a.postedDate || ""));
+      break;
+    case "closing":
+      sorted.sort((a, b) => {
+        if (!a.closingDate && !b.closingDate) return 0;
+        if (!a.closingDate) return 1;
+        if (!b.closingDate) return -1;
+        return a.closingDate.localeCompare(b.closingDate);
+      });
+      break;
+    case "source":
+      sorted.sort((a, b) => a.source.localeCompare(b.source) || (b.postedDate || "").localeCompare(a.postedDate || ""));
+      break;
+    case "title":
+      sorted.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    case "location":
+      sorted.sort((a, b) => (a.location || "").localeCompare(b.location || ""));
+      break;
+  }
+  return sorted;
+}
+
+function jobRowHtml(job) {
+  const today = todayIso();
+  const badges = [`<span class="badge source">${job.source}</span>`];
+
+  if (job.postedDate && daysBetween(job.postedDate, today) <= 3) {
+    badges.push(`<span class="badge new">New</span>`);
+  }
+  if (job.closingDate) {
+    const daysLeft = daysBetween(today, job.closingDate);
+    if (daysLeft >= 0 && daysLeft <= 7) {
+      const label = daysLeft === 0 ? "Closes today" : daysLeft === 1 ? "Closes tomorrow" : `Closes in ${daysLeft} days`;
+      badges.push(`<span class="badge urgent">${label}</span>`);
     }
   }
 
-  document.getElementById("board").innerHTML = columns.join("");
-  document.getElementById("footer").textContent =
-    "State listings refresh automatically on a schedule. Nonprofit Maine and MEMUN listings are updated manually, since both sites restrict automated crawling.";
+  const metaParts = [job.org, job.location].filter(Boolean);
+  if (job.postedDate) metaParts.push(`Posted ${fmtDate(job.postedDate)}`);
+  if (job.closingDate) metaParts.push(`Closes ${fmtDate(job.closingDate)}`);
+
+  return `
+    <li>
+      <div class="job-top">
+        <a class="job-title" href="${job.url}" target="_blank" rel="noopener">${job.title}</a>
+        <div class="badges">${badges.join("")}</div>
+      </div>
+      <div class="job-meta">${metaParts.join(" · ")}</div>
+    </li>
+  `;
 }
 
-render();
+function render() {
+  const query = document.getElementById("search").value.trim();
+  const sortMode = document.getElementById("sort").value;
+
+  const filtered = ALL_JOBS.filter((j) => matchesSearch(j, query));
+  const sorted = sortJobs(filtered, sortMode);
+
+  document.getElementById("resultCount").textContent =
+    `Showing ${sorted.length} of ${ALL_JOBS.length} listings`;
+
+  document.getElementById("board").innerHTML = sorted.length
+    ? `<ul class="jobs">${sorted.map(jobRowHtml).join("")}</ul>`
+    : `<p class="empty">No listings match your search.</p>`;
+}
+
+async function init() {
+  ALL_JOBS = await loadAllJobs();
+  render();
+  document.getElementById("search").addEventListener("input", render);
+  document.getElementById("sort").addEventListener("change", render);
+}
+
+init();
 </script>
 </body>
 </html>
