@@ -17,6 +17,8 @@ API_URL = "https://maine.wd5.myworkdayjobs.com/wday/cxs/maine/Executive/jobs"
 JOB_BASE_URL = "https://maine.wd5.myworkdayjobs.com/Executive"
 PAGE_SIZE = 20  # Workday's API rejects anything larger with HTTP 400
 OUTPUT_PATH = "data/executive.json"
+ARCHIVE_PATH = "data/archive.json"
+SOURCE_NAME = "Maine Executive Branch (Workday)"
 
 # Titles containing any of these (case-insensitive) are treated as relevant
 # to Maine political/government coverage. Tune this list as the board proves
@@ -78,22 +80,59 @@ def is_relevant(title):
     return any(pattern.search(lowered) for pattern in TITLE_KEYWORD_PATTERNS)
 
 
+def load_json(path, default):
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return default
+
+
 def main():
+    today = datetime.now(timezone.utc).date().isoformat()
+
+    previous = load_json(OUTPUT_PATH, None)
+    previous_jobs_by_url = {j["url"]: j for j in previous["jobs"]} if previous else {}
+
     postings = fetch_all_postings()
     relevant = [p for p in postings if is_relevant(p["title"])]
 
-    jobs = [
-        {
-            "title": p["title"],
-            "location": p.get("locationsText", ""),
-            "postedOn": p.get("postedOn", ""),
-            "url": JOB_BASE_URL + p["externalPath"],
-        }
-        for p in relevant
-    ]
+    jobs = []
+    for p in relevant:
+        url = JOB_BASE_URL + p["externalPath"]
+        firstSeenOn = previous_jobs_by_url.get(url, {}).get("firstSeenOn", today)
+        jobs.append(
+            {
+                "title": p["title"],
+                "location": p.get("locationsText", ""),
+                "postedOn": p.get("postedOn", ""),
+                "url": url,
+                "firstSeenOn": firstSeenOn,
+            }
+        )
+
+    current_urls = {j["url"] for j in jobs}
+    removed = [j for j in previous_jobs_by_url.values() if j["url"] not in current_urls]
+
+    if removed:
+        archive = load_json(ARCHIVE_PATH, {"archived": []})
+        for j in removed:
+            archive["archived"].append(
+                {
+                    "source": SOURCE_NAME,
+                    "title": j["title"],
+                    "location": j.get("location", ""),
+                    "url": j["url"],
+                    "firstSeenOn": j.get("firstSeenOn"),
+                    "removedOn": today,
+                }
+            )
+        with open(ARCHIVE_PATH, "w") as f:
+            json.dump(archive, f, indent=2)
+            f.write("\n")
 
     output = {
-        "source": "Maine Executive Branch (Workday)",
+        "source": SOURCE_NAME,
         "sourceSearchUrl": JOB_BASE_URL,
         "generatedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "totalPostings": len(postings),
@@ -105,7 +144,10 @@ def main():
         json.dump(output, f, indent=2)
         f.write("\n")
 
-    print(f"Fetched {len(postings)} total postings, {len(jobs)} matched filter.")
+    print(
+        f"Fetched {len(postings)} total postings, {len(jobs)} matched filter, "
+        f"{len(removed)} archived as removed."
+    )
 
 
 if __name__ == "__main__":
