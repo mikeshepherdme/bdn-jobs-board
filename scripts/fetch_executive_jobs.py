@@ -95,6 +95,10 @@ def main():
     previous_jobs_by_url = {j["url"]: j for j in previous["jobs"]} if previous else {}
 
     postings = fetch_all_postings()
+    # Workday occasionally returns malformed entries with just a bulletFields
+    # req number and no title/externalPath (seen in the wild, cause unclear).
+    # Skip those rather than crashing.
+    postings = [p for p in postings if p.get("title") and p.get("externalPath")]
     relevant = [p for p in postings if is_relevant(p["title"])]
 
     jobs = []
