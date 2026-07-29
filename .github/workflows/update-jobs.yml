@@ -1,33 +1,54 @@
-  name: Update Executive Branch jobs
+⏺ name: Update Executive Branch jobs
 
   on:
     schedule:
-      # 11:00 UTC = 7am ET (6am during EST) on weekdays
+      # Two triggers cover 7am Eastern year-round, since GitHub Actions cron
+      # only runs in UTC and doesn't shift for Daylight Saving Time:
+      #   11:00 UTC = 7am EDT (roughly March-November)
+      #   12:00 UTC = 7am EST (roughly November-March)
+      # The "actually 7am Eastern" step below skips the one that's off by an 
+  hour.
       - cron: "0 11 * * 1-5"
+      - cron: "0 12 * * 1-5"
     workflow_dispatch: {}
 
   permissions:
     contents: write
-  
+
   jobs:
     refresh:
       runs-on: ubuntu-latest
       steps:
+        - name: Check if it's actually 7am Eastern
+          id: check
+          run: |
+            hour=$(TZ="America/New_York" date +%H)
+            echo "Eastern hour is $hour"
+            if [ "$hour" = "07" ] || [ "${{ github.event_name }}" = 
+  "workflow_dispatch" ]; then
+              echo "should_run=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "should_run=false" >> "$GITHUB_OUTPUT"
+            fi
         - uses: actions/checkout@v4
+          if: steps.check.outputs.should_run == 'true'
         - uses: actions/setup-python@v5
+          if: steps.check.outputs.should_run == 'true'
           with:
             python-version: "3.11"
         - name: Fetch and filter Executive Branch listings
+          if: steps.check.outputs.should_run == 'true'
           run: python3 scripts/fetch_executive_jobs.py
         - name: Commit updated data if changed
+          if: steps.check.outputs.should_run == 'true'
           run: |
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            if ! git diff --quiet -- data/executive.json; then
-              git add data/executive.json
+            if ! git diff --quiet -- data/executive.json data/archive.json; then
+              git add data/executive.json data/archive.json
               git commit -m "Refresh Executive Branch job listings"
               git push
             else
-              echo "No changes to data/executive.json"
+              echo "No changes to data/executive.json or data/archive.json"
             fi
-  
+
