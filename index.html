@@ -9,8 +9,9 @@
     --bg: #ffffff;
     --fg: #1a1a1a;
     --muted: #5b5b5b;
-    --card-bg: #f7f7f5;
-    --border: #dedede;
+    --card-bg: #fdfdfc;
+    --card-shadow: 0 1px 2px rgba(20, 16, 15, 0.04), 0 2px 8px rgba(20, 16, 15, 0.05);
+    --border: #e3e0dc;
     --accent: #8a1f1f;
     --link: #8a1f1f;
     --new-bg: #eaf3ea;
@@ -18,13 +19,21 @@
     --urgent-bg: #fbeaea;
     --urgent-fg: #a12f2f;
     --input-bg: #ffffff;
+    --stat-bg: #faf6ee;
+
+    --src-exec: #2f5d8a;
+    --src-judicial: #6a3f91;
+    --src-legislature: #1f7a4d;
+    --src-nonprofit: #a3671b;
+    --src-municipal: #a13f4a;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #14100f;
       --fg: #f2ede9;
       --muted: #b8aea8;
-      --card-bg: #201a18;
+      --card-bg: #1c1715;
+      --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.25);
       --border: #3a2f2b;
       --accent: #e07a5f;
       --link: #e5987e;
@@ -33,6 +42,13 @@
       --urgent-bg: #2e1c1c;
       --urgent-fg: #e28b8b;
       --input-bg: #201a18;
+      --stat-bg: #211a15;
+
+      --src-exec: #7fb0e0;
+      --src-judicial: #c09bde;
+      --src-legislature: #74d19f;
+      --src-nonprofit: #e0b46f;
+      --src-municipal: #e0919b;
     }
   }
   * { box-sizing: border-box; }
@@ -44,16 +60,44 @@
     line-height: 1.45;
   }
   .wrap { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
-  header { margin-bottom: 1.25rem; }
-  header h1 { font-size: 1.6rem; margin: 0 0 0.35rem; letter-spacing: -0.01em; }
-  header p.tagline { margin: 0 0 0.6rem; color: var(--muted); font-size: 0.95rem; }
-  header p.intro { margin: 0; font-size: 0.92rem; color: var(--fg); max-width: 640px; }
+  header { margin-bottom: 1.1rem; }
+  header h1 {
+    font-size: 1.85rem;
+    margin: 0 0 0.3rem;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+  header p.tagline {
+    margin: 0 0 0.7rem;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  header p.intro { margin: 0; font-size: 0.95rem; color: var(--fg); max-width: 620px; line-height: 1.55; }
+
+  .stats {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1.1rem 0 0;
+  }
+  .stat {
+    background: var(--stat-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.55rem 0.9rem;
+    flex: 1 1 140px;
+  }
+  .stat .stat-num { font-size: 1.25rem; font-weight: 800; line-height: 1.1; }
+  .stat .stat-label { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
 
   .controls {
     display: flex;
     gap: 0.6rem;
     flex-wrap: wrap;
-    margin: 1.25rem 0 0.75rem;
+    margin: 1.1rem 0 0.75rem;
   }
   .controls input[type="search"] {
     flex: 1 1 240px;
@@ -80,11 +124,19 @@
 
   ul.jobs { list-style: none; margin: 0; padding: 0; }
   ul.jobs li {
+    position: relative;
     border: 1px solid var(--border);
+    border-left: 4px solid var(--src-color, var(--border));
     border-radius: 10px;
     background: var(--card-bg);
-    padding: 0.85rem 1rem;
-    margin-bottom: 0.6rem;
+    box-shadow: var(--card-shadow);
+    padding: 0.9rem 1.05rem;
+    margin-bottom: 0.7rem;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  ul.jobs li:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(20, 16, 15, 0.06), 0 6px 16px rgba(20, 16, 15, 0.08);
   }
   .job-top {
     display: flex;
@@ -94,27 +146,30 @@
     flex-wrap: wrap;
   }
   .job-title {
-    font-weight: 600;
-    font-size: 0.98rem;
-    color: var(--link);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--fg);
     text-decoration: none;
+    letter-spacing: -0.005em;
   }
-  .job-title:hover { text-decoration: underline; }
+  .job-title:hover { color: var(--link); text-decoration: underline; }
   .job-meta {
-    font-size: 0.83rem;
+    font-size: 0.84rem;
     color: var(--muted);
-    margin-top: 0.25rem;
+    margin-top: 0.3rem;
   }
   .badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
   .badge {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     font-size: 0.72rem;
-    font-weight: 600;
-    padding: 0.15rem 0.5rem;
+    font-weight: 700;
+    padding: 0.18rem 0.55rem;
     border-radius: 999px;
     white-space: nowrap;
   }
-  .badge.source { background: var(--border); color: var(--fg); }
+  .badge.source { background: color-mix(in srgb, var(--src-color, var(--border)) 16%, var(--card-bg)); color: var(--src-color, var(--fg)); }
   .badge.new { background: var(--new-bg); color: var(--new-fg); }
   .badge.urgent { background: var(--urgent-bg); color: var(--urgent-fg); }
 
@@ -160,6 +215,8 @@
     <p class="tagline">A companion to Maine Politics Insider</p>
     <p class="intro">Every weekday morning we scan Maine state government, plus nonprofit and municipal listings, for roles that matter to the people who read this newsletter — the ones who might become the next commissioner, town manager, or government relations hire.</p>
   </header>
+
+  <div class="stats" id="stats"></div>
 
   <div class="controls">
     <input type="search" id="search" placeholder="Search by title, organization, or location…">
@@ -224,6 +281,18 @@ function fmtDate(iso) {
 }
 
 let ALL_JOBS = [];
+
+const SOURCE_META = {
+  "State Executive Branch": { icon: "🏛️", cssVar: "--src-exec" },
+  "State Judicial Branch": { icon: "⚖️", cssVar: "--src-judicial" },
+  "State Legislature": { icon: "📜", cssVar: "--src-legislature" },
+  "Nonprofit Maine": { icon: "🤝", cssVar: "--src-nonprofit" },
+  "Maine Municipal Association Career Center": { icon: "🏘️", cssVar: "--src-municipal" },
+};
+
+function sourceMeta(source) {
+  return SOURCE_META[source] || { icon: "•", cssVar: "--border" };
+}
 
 async function loadAllJobs() {
   const [executive, judicial, legislature, manual] = await Promise.all([
@@ -295,7 +364,8 @@ function sortJobs(jobs, mode) {
 
 function jobRowHtml(job) {
   const today = todayIso();
-  const badges = [`<span class="badge source">${job.source}</span>`];
+  const meta = sourceMeta(job.source);
+  const badges = [`<span class="badge source">${meta.icon} ${job.source}</span>`];
 
   if (job.postedDate && daysBetween(job.postedDate, today) <= 3) {
     badges.push(`<span class="badge new">New</span>`);
@@ -313,13 +383,28 @@ function jobRowHtml(job) {
   if (job.closingDate) metaParts.push(`Closes ${fmtDate(job.closingDate)}`);
 
   return `
-    <li>
+    <li style="--src-color: var(${meta.cssVar});">
       <div class="job-top">
         <a class="job-title" href="${job.url}" target="_blank" rel="noopener">${job.title}</a>
         <div class="badges">${badges.join("")}</div>
       </div>
       <div class="job-meta">${metaParts.join(" · ")}</div>
     </li>
+  `;
+}
+
+function renderStats() {
+  const today = todayIso();
+  const total = ALL_JOBS.length;
+  const closingSoon = ALL_JOBS.filter(
+    (j) => j.closingDate && daysBetween(today, j.closingDate) >= 0 && daysBetween(today, j.closingDate) <= 7
+  ).length;
+  const newCount = ALL_JOBS.filter((j) => j.postedDate && daysBetween(j.postedDate, today) <= 3).length;
+
+  document.getElementById("stats").innerHTML = `
+    <div class="stat"><div class="stat-num">${total}</div><div class="stat-label">Open roles</div></div>
+    <div class="stat"><div class="stat-num">${newCount}</div><div class="stat-label">Posted recently</div></div>
+    <div class="stat"><div class="stat-num">${closingSoon}</div><div class="stat-label">Closing soon</div></div>
   `;
 }
 
@@ -340,6 +425,7 @@ function render() {
 
 async function init() {
   ALL_JOBS = await loadAllJobs();
+  renderStats();
   render();
   document.getElementById("search").addEventListener("input", render);
   document.getElementById("sort").addEventListener("change", render);
