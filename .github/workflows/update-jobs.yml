@@ -1,4 +1,4 @@
-name: Update state government job listings
+name: Update Executive Branch jobs
 
 on:
   schedule:
@@ -37,21 +37,15 @@ jobs:
       - name: Fetch and filter Executive Branch listings
         if: steps.check.outputs.should_run == 'true'
         run: python3 scripts/fetch_executive_jobs.py
-      - name: Fetch and filter Judicial Branch listings
-        if: steps.check.outputs.should_run == 'true'
-        run: python3 scripts/fetch_judicial_jobs.py
-      - name: Fetch and filter Legislature listings
-        if: steps.check.outputs.should_run == 'true'
-        run: python3 scripts/fetch_legislature_jobs.py
       - name: Commit updated data if changed
         if: steps.check.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- data/executive.json data/judicial.json data/legislature.json data/archive.json; then
-            git add data/executive.json data/judicial.json data/legislature.json data/archive.json
-            git commit -m "Refresh state government job listings"
+          if ! git diff --quiet -- data/executive.json data/archive.json; then
+            git add data/executive.json data/archive.json
+            git commit -m "Refresh Executive Branch job listings"
             git push
           else
-            echo "No changes to state government job data"
+            echo "No changes to data/executive.json or data/archive.json"
           fi
