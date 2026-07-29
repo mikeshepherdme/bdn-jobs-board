@@ -1,0 +1,32 @@
+name: Update Executive Branch jobs
+
+on:
+  schedule:
+    # 11:00 UTC = 7am ET (6am during EST) on weekdays
+    - cron: "0 11 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Fetch and filter Executive Branch listings
+        run: python3 scripts/fetch_executive_jobs.py
+      - name: Commit updated data if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- data/executive.json; then
+            git add data/executive.json
+            git commit -m "Refresh Executive Branch job listings"
+            git push
+          else
+            echo "No changes to data/executive.json"
+          fi

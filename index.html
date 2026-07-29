@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maine Politics Jobs Board — BDN Maine Politics Insider</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #5b5b5b;
+    --card-bg: #f7f7f5;
+    --border: #dedede;
+    --accent: #8a1f1f;
+    --link: #8a1f1f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14100f;
+      --fg: #f2ede9;
+      --muted: #b8aea8;
+      --card-bg: #201a18;
+      --border: #3a2f2b;
+      --accent: #e07a5f;
+      --link: #e5987e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.45;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  header { margin-bottom: 1.5rem; }
+  header h1 { font-size: 1.5rem; margin: 0 0 0.25rem; }
+  header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  .board { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+  section.column {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    background: var(--card-bg);
+    min-width: 0;
+  }
+  section.column h2 {
+    font-size: 1.05rem;
+    margin: 0 0 0.25rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  section.column .meta {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+  ul.jobs { list-style: none; margin: 0; padding: 0; }
+  ul.jobs li {
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--border);
+  }
+  ul.jobs li:first-child { border-top: none; }
+  ul.jobs a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  ul.jobs a:hover { text-decoration: underline; }
+  ul.jobs .sub {
+    display: block;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+  }
+  .empty {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-style: italic;
+    padding: 0.5rem 0;
+  }
+  .browse-all {
+    display: inline-block;
+    margin-top: 0.85rem;
+    font-size: 0.85rem;
+    color: var(--link);
+    text-decoration: none;
+    border-top: 1px solid var(--border);
+    padding-top: 0.6rem;
+    width: 100%;
+  }
+  .browse-all:hover { text-decoration: underline; }
+  footer {
+    margin-top: 2rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Maine Politics Jobs Board</h1>
+    <p>Curated for BDN Maine Politics Insider from state, nonprofit and municipal listings.</p>
+  </header>
+  <div class="board" id="board">
+    <p class="empty">Loading listings…</p>
+  </div>
+  <footer id="footer"></footer>
+</div>
+
+<script>
+async function loadJson(path) {
+  try {
+    const res = await fetch(path, { cache: "no-store" });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (e) {
+    return null;
+  }
+}
+
+function fmtDate(iso) {
+  if (!iso) return "unknown";
+  const d = new Date(iso);
+  return d.toLocaleString(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
+
+function renderJobList(jobs, renderItem) {
+  if (!jobs || jobs.length === 0) {
+    return '<p class="empty">No matching openings right now.</p>';
+  }
+  return '<ul class="jobs">' + jobs.map(renderItem).join("") + "</ul>";
+}
+
+function columnHtml({ title, metaHtml, bodyHtml, browseAllUrl, browseAllLabel }) {
+  return `
+    <section class="column">
+      <h2>${title}</h2>
+      <div class="meta">${metaHtml}</div>
+      ${bodyHtml}
+      <a class="browse-all" href="${browseAllUrl}" target="_blank" rel="noopener">${browseAllLabel} →</a>
+    </section>
+  `;
+}
+
+async function render() {
+  const [executive, manual] = await Promise.all([
+    loadJson("data/executive.json"),
+    loadJson("data/manual.json"),
+  ]);
+
+  const columns = [];
+
+  if (executive) {
+    columns.push(
+      columnHtml({
+        title: "State Executive Branch",
+        metaHtml: `Updated ${fmtDate(executive.generatedAt)} · ${executive.matchedPostings} of ${executive.totalPostings} open postings matched`,
+        bodyHtml: renderJobList(
+          executive.jobs,
+          (j) => `
+            <li>
+              <a href="${j.url}" target="_blank" rel="noopener">${j.title}</a>
+              <span class="sub">${j.location}${j.postedOn ? " · " + j.postedOn : ""}</span>
+            </li>
+          `
+        ),
+        browseAllUrl: executive.sourceSearchUrl,
+        browseAllLabel: "Browse all state openings",
+      })
+    );
+  }
+
+  if (manual) {
+    for (const source of manual.sources) {
+      columns.push(
+        columnHtml({
+          title: source.name,
+          metaHtml: source.lastUpdated
+            ? `Manually updated ${fmtDate(source.lastUpdated)}`
+            : "Not yet manually updated — browse the source directly",
+          bodyHtml: renderJobList(
+            source.jobs,
+            (j) => `
+              <li>
+                <a href="${j.url}" target="_blank" rel="noopener">${j.title}</a>
+                <span class="sub">${[j.org, j.location, j.postedOn].filter(Boolean).join(" · ")}</span>
+              </li>
+            `
+          ),
+          browseAllUrl: source.searchUrl,
+          browseAllLabel: "Browse all openings",
+        })
+      );
+    }
+  }
+
+  document.getElementById("board").innerHTML = columns.join("");
+  document.getElementById("footer").textContent =
+    "State listings refresh automatically on a schedule. Nonprofit Maine and MEMUN listings are updated manually, since both sites restrict automated crawling.";
+}
+
+render();
+</script>
+</body>
+</html>

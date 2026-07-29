@@ -1,0 +1,113 @@
+{
+  "sources": [
+    {
+      "id": "nonprofit-maine",
+      "name": "Nonprofit Maine",
+      "searchUrl": "https://jobs.nonprofitmaine.org/search",
+      "note": "This site's robots.txt disallows crawling /search/ and its job-feed paths, so listings here are entered manually rather than scraped. Ask Claude to check this site in Chrome (as a logged-in browser session, not a bot) and update this file when you want it refreshed.",
+      "lastUpdated": "2026-07-29",
+      "jobs": [
+        {
+          "title": "Government Relations Manager",
+          "org": "Natural Resources Council of Maine",
+          "location": "Augusta, Maine (Hybrid)",
+          "postedOn": "Posted June 23, 2026",
+          "url": "https://jobs.nonprofitmaine.org/job/government-relations-manager-augusta-maine-5380"
+        },
+        {
+          "title": "Program Coordinator",
+          "org": "Community Organizing Alliance",
+          "location": "Lewiston, Maine (Hybrid)",
+          "postedOn": "Posted July 20, 2026",
+          "url": "https://jobs.nonprofitmaine.org/job/program-coordinator-lewiston-maine-5464"
+        },
+        {
+          "title": "Community Organizer",
+          "org": "Preble Street",
+          "location": "Portland, Maine",
+          "postedOn": "Posted July 15, 2026",
+          "url": "https://jobs.nonprofitmaine.org/job/community-organizer-portland-maine-5444"
+        },
+        {
+          "title": "Outreach and Enrollment Program Manager",
+          "org": "Maine Primary Care Association",
+          "location": "Augusta, Maine (Hybrid)",
+          "postedOn": "Posted July 29, 2026",
+          "url": "https://jobs.nonprofitmaine.org/job/outreach-and-enrollment-program-manager-augusta-maine-5487"
+        }
+      ]
+    },
+    {
+      "id": "memun",
+      "name": "Maine Municipal Association Career Center",
+      "searchUrl": "https://www.memun.org/Municipal-Career-Center",
+      "note": "This site's robots.txt explicitly disallows ClaudeBot site-wide, so it is never scraped automatically. Ask Claude to check this site in Chrome (as a logged-in browser session, not a bot) and update this file when you want it refreshed.",
+      "lastUpdated": "2026-07-29",
+      "jobs": [
+        {
+          "title": "Town Manager",
+          "org": "Town of Houlton",
+          "location": "Aroostook County",
+          "postedOn": "Posted July 16, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/town-manager-town-of-houlton"
+        },
+        {
+          "title": "Administrator to the Board of Selectmen (Town Clerk & Treasurer)",
+          "org": "Town of Clifton",
+          "location": "Penobscot County",
+          "postedOn": "Posted July 2, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/administrator-to-the-board-of-selectmen-town-clerk-treasurer"
+        },
+        {
+          "title": "Assistant Town Manager",
+          "org": "",
+          "location": "Androscoggin County",
+          "postedOn": "Posted July 1, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/assistant-town-manager"
+        },
+        {
+          "title": "Town Manager",
+          "org": "Town of Skowhegan",
+          "location": "Somerset County",
+          "postedOn": "Posted July 1, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/town-manager-town-of-skowhegan"
+        },
+        {
+          "title": "Town Manager",
+          "org": "Town of Monson",
+          "location": "Piscataquis County",
+          "postedOn": "Posted June 19, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/town-manager-town-of-monson"
+        },
+        {
+          "title": "County Administrator",
+          "org": "Franklin County",
+          "location": "",
+          "postedOn": "Posted June 16, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/county-administrator-franklin-county"
+        },
+        {
+          "title": "Executive Director",
+          "org": "Midcoast Council of Governments",
+          "location": "Lincoln County",
+          "postedOn": "Posted June 8, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/executive-director-midcoast-council-of-governments"
+        },
+        {
+          "title": "Town Manager",
+          "org": "Town of Belgrade",
+          "location": "Kennebec County",
+          "postedOn": "Posted April 16, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/town-manager-2"
+        },
+        {
+          "title": "Town Manager / Municipal Finance Officer",
+          "org": "Town of Bingham",
+          "location": "Somerset County",
+          "postedOn": "Posted April 12, 2026",
+          "url": "https://www.memun.org/Municipal-Career-Center/town-of-bingham-town-manager-municipal-finance-officer"
+        }
+      ]
+    }
+  ]
+}
