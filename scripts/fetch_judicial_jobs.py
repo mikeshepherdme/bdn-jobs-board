@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Fetches Maine Executive Branch job postings from the state's public Workday
+Fetches Maine Judicial Branch job postings from the state's public Workday
 job-search API and filters them down to roles relevant to a political
-newsletter audience. Writes data/executive.json.
+newsletter audience. Writes data/judicial.json.
 
-Source: https://maine.wd5.myworkdayjobs.com/Executive
-robots.txt for this host explicitly allows crawling /Executive/ (only
+Source: https://maine.wd5.myworkdayjobs.com/Judicial
+robots.txt for this host explicitly allows crawling /Judicial/ (only
 /refreshFacet/ is disallowed), so hitting this JSON API on a schedule is fine.
 """
 import json
@@ -13,10 +13,10 @@ import json
 from common import archive_removed, is_relevant, load_json, now_iso, today_iso
 from workday_common import ARCHIVE_PATH, fetch_all_postings, fetch_job_detail
 
-SITE = "Executive"
-JOB_BASE_URL = "https://maine.wd5.myworkdayjobs.com/Executive"
-OUTPUT_PATH = "data/executive.json"
-SOURCE_NAME = "Maine Executive Branch (Workday)"
+SITE = "Judicial"
+JOB_BASE_URL = "https://maine.wd5.myworkdayjobs.com/Judicial"
+OUTPUT_PATH = "data/judicial.json"
+SOURCE_NAME = "Maine Judicial Branch (Workday)"
 
 
 def main():

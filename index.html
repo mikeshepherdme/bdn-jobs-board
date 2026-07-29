@@ -177,11 +177,13 @@
 
   <footer>
     <p class="methodology">
-      <strong>How this works:</strong> state listings are pulled automatically each weekday morning from Maine's public Workday job board and filtered to leadership, policy, communications, and legal roles. Nonprofit Maine and MEMUN listings are curated by hand, since both sites restrict automated crawling.
+      <strong>How this works:</strong> state Executive, Judicial, and Legislature listings are pulled automatically each weekday morning from Maine's public job boards and filtered to leadership, policy, communications, and legal roles. Nonprofit Maine and MEMUN listings are curated by hand, since both sites restrict automated crawling.
     </p>
     <p class="sources-list">
       Browse full listings directly:
       <a href="https://maine.wd5.myworkdayjobs.com/Executive" target="_blank" rel="noopener">State Executive Branch</a> ·
+      <a href="https://maine.wd5.myworkdayjobs.com/Judicial" target="_blank" rel="noopener">State Judicial Branch</a> ·
+      <a href="https://phf.tbe.taleo.net/phf01/ats/careers/v2/searchResults?org=MAINELEGIS&cws=38" target="_blank" rel="noopener">State Legislature</a> ·
       <a href="https://jobs.nonprofitmaine.org/search" target="_blank" rel="noopener">Nonprofit Maine</a> ·
       <a href="https://www.memun.org/Municipal-Career-Center" target="_blank" rel="noopener">MEMUN Career Center</a>
     </p>
@@ -224,8 +226,10 @@ function fmtDate(iso) {
 let ALL_JOBS = [];
 
 async function loadAllJobs() {
-  const [executive, manual] = await Promise.all([
+  const [executive, judicial, legislature, manual] = await Promise.all([
     loadJson("data/executive.json"),
+    loadJson("data/judicial.json"),
+    loadJson("data/legislature.json"),
     loadJson("data/manual.json"),
   ]);
 
@@ -234,6 +238,16 @@ async function loadAllJobs() {
   if (executive) {
     for (const j of executive.jobs) {
       jobs.push({ ...j, source: "State Executive Branch" });
+    }
+  }
+  if (judicial) {
+    for (const j of judicial.jobs) {
+      jobs.push({ ...j, source: "State Judicial Branch" });
+    }
+  }
+  if (legislature) {
+    for (const j of legislature.jobs) {
+      jobs.push({ ...j, source: "State Legislature" });
     }
   }
   if (manual) {
