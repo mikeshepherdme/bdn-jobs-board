@@ -1,3 +1,58 @@
 {
-  "archived": []
+  "archived": [
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "Public Service Manager III - Director of Digital Services",
+      "org": "Department of Administrative and Financial Services",
+      "location": "Augusta, Maine",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Public-Service-Manager-III_R26-02999",
+      "firstSeenOn": "2026-07-29",
+      "removedOn": "2026-08-07"
+    },
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "Public Service Executive I - Licensing Board Executive Director",
+      "org": "Department of Professional and Financial Regulation",
+      "location": "Gardiner, Maine",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Gardiner-Maine/Public-Service-Executive-I---Licensing-Board-Executive-Director_R26-02916",
+      "firstSeenOn": "2026-07-29",
+      "removedOn": "2026-08-07"
+    },
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "OCFS Policy & Training Specialist",
+      "org": "Department of Health and Human Services",
+      "location": "Augusta, Maine",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/OCFS-Policy---Training-Specialist_R26-02968",
+      "firstSeenOn": "2026-07-29",
+      "removedOn": "2026-08-07"
+    },
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "Public Service Manager II - Director, Division for the Blind and Visually Impaired",
+      "org": "Department of Labor",
+      "location": "Augusta, Maine",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Public-Service-Manager-II---Director--Division-for-the-Blind-and-Visually-Impaired_R26-02893",
+      "firstSeenOn": "2026-07-29",
+      "removedOn": "2026-08-07"
+    },
+    {
+      "source": "Maine Legislature (Taleo)",
+      "title": "Legislative Analyst",
+      "org": "Maine State Legislature",
+      "location": "Augusta, ME",
+      "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=249",
+      "firstSeenOn": "2026-07-29",
+      "removedOn": "2026-08-07"
+    },
+    {
+      "source": "Maine Legislature (Taleo)",
+      "title": "Legislative Information Assistant",
+      "org": "Maine State Legislature",
+      "location": "Augusta, ME",
+      "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=250",
+      "firstSeenOn": "2026-07-29",
+      "removedOn": "2026-08-07"
+    }
+  ]
 }
