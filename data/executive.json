@@ -1,10 +1,19 @@
 {
   "source": "Maine Executive Branch (Workday)",
   "sourceSearchUrl": "https://maine.wd5.myworkdayjobs.com/Executive",
-  "generatedAt": "2026-08-07T11:49:37+00:00",
-  "totalPostings": 257,
-  "matchedPostings": 4,
+  "generatedAt": "2026-08-10T11:51:01+00:00",
+  "totalPostings": 278,
+  "matchedPostings": 5,
   "jobs": [
+    {
+      "title": "Policy and Compliance Manager",
+      "org": "Department of Health and Human Services",
+      "location": "Augusta, Maine",
+      "postedDate": "2026-08-07",
+      "closingDate": "2026-08-21",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Policy-and-Compliance-Manager_R26-02666-1",
+      "firstSeenOn": "2026-08-10"
+    },
     {
       "title": "Policy Development Specialist - Strategic Marketing & Research Manager - Public Service Manager I",
       "org": "Department of Economic and Community Development",
