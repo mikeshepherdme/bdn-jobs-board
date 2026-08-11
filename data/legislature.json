@@ -1,8 +1,18 @@
 {
   "source": "Maine Legislature (Taleo)",
   "sourceSearchUrl": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/searchResults?org=MAINELEGIS&cws=38",
-  "generatedAt": "2026-08-10T11:51:02+00:00",
-  "totalPostings": 0,
-  "matchedPostings": 0,
-  "jobs": []
+  "generatedAt": "2026-08-11T11:47:30+00:00",
+  "totalPostings": 2,
+  "matchedPostings": 1,
+  "jobs": [
+    {
+      "title": "Director, Office of Legislative Information Technology",
+      "org": "Maine State Legislature",
+      "location": "Augusta, ME",
+      "postedDate": "Mon Aug 10",
+      "closingDate": "2026-09-08",
+      "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=251",
+      "firstSeenOn": "2026-08-11"
+    }
+  ]
 }
