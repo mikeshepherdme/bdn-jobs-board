@@ -1,18 +1,27 @@
 {
   "source": "Maine Legislature (Taleo)",
   "sourceSearchUrl": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/searchResults?org=MAINELEGIS&cws=38",
-  "generatedAt": "2026-08-11T11:47:30+00:00",
-  "totalPostings": 2,
-  "matchedPostings": 1,
+  "generatedAt": "2026-08-12T11:50:51+00:00",
+  "totalPostings": 3,
+  "matchedPostings": 2,
   "jobs": [
     {
       "title": "Director, Office of Legislative Information Technology",
       "org": "Maine State Legislature",
       "location": "Augusta, ME",
-      "postedDate": "Mon Aug 10",
+      "postedDate": "2026-08-10",
       "closingDate": "2026-09-08",
       "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=251",
       "firstSeenOn": "2026-08-11"
+    },
+    {
+      "title": "Senior Health Policy Advisor",
+      "org": "Maine State Legislature",
+      "location": "Augusta, ME",
+      "postedDate": "2026-08-11",
+      "closingDate": null,
+      "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=253",
+      "firstSeenOn": "2026-08-12"
     }
   ]
 }
