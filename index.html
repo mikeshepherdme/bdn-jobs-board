@@ -61,9 +61,16 @@
   }
   .wrap { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
   header { margin-bottom: 1.1rem; }
+  .brand { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
   header h1 {
     font-size: 1.85rem;
-    margin: 0 0 0.3rem;
+    margin: 0;
     letter-spacing: -0.02em;
     font-weight: 800;
   }
@@ -211,7 +218,10 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>MPI Jobs Board</h1>
+    <div class="brand">
+      <img src="assets/bdn-logo.png" alt="Bangor Daily News" class="brand-logo">
+      <h1>MPI Jobs Board</h1>
+    </div>
     <p class="tagline">A companion to Maine Politics Insider</p>
     <p class="intro">Every weekday morning we scan Maine state government, plus nonprofit and municipal listings, for roles that matter to the people who read this newsletter — the ones who might become the next commissioner, town manager, or government relations hire.</p>
   </header>
