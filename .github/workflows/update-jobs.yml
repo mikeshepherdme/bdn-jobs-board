@@ -2,13 +2,19 @@ name: Update state government job listings
 
 on:
   schedule:
-    # Two triggers cover 7am Eastern year-round, since GitHub Actions cron
-    # only runs in UTC and doesn't shift for Daylight Saving Time:
-    #   11:00 UTC = 7am EDT (roughly March-November)
-    #   12:00 UTC = 7am EST (roughly November-March)
-    # The "actually 7am Eastern" step below skips the one that's off by an hour.
-    - cron: "0 11 * * 1-5"
-    - cron: "0 12 * * 1-5"
+    # GitHub delays scheduled ("cron") triggers unpredictably under load --
+    # sometimes by minutes, sometimes by close to two hours. An earlier
+    # version of this workflow required landing in an exact 7am-Eastern hour
+    # window, and a run of longer-than-usual delays caused it to miss that
+    # window on BOTH daily triggers for a full week (2026-07-30 to 08-06)
+    # without ever failing loudly -- it just silently did nothing.
+    #
+    # Fix: fire every 30 minutes across a wide weekday-morning window (11:00
+    # to 15:30 UTC -- this covers 6am-11am Eastern across both DST states,
+    # so no timezone-of-day logic is needed at all), and use an "already
+    # refreshed today" guard below so only the first successful firing each
+    # day does real work. Later, delayed triggers become cheap no-ops.
+    - cron: "0,30 11-15 * * 1-5"
   workflow_dispatch: {}
 
 permissions:
@@ -18,18 +24,18 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if it's actually 7am Eastern
+      - uses: actions/checkout@v4
+      - name: Check if already refreshed today
         id: check
         run: |
-          hour=$(TZ="America/New_York" date +%H)
-          echo "Eastern hour is $hour"
-          if [ "$hour" = "07" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
-          else
+          last_date=$(python3 -c "import json; print(json.load(open('data/executive.json')).get('generatedAt','')[:10])" 2>/dev/null || echo "")
+          today=$(date -u +%Y-%m-%d)
+          echo "Last refresh date: $last_date / today (UTC): $today"
+          if [ "$last_date" = "$today" ] && [ "${{ github.event_name }}" != "workflow_dispatch" ]; then
             echo "should_run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/checkout@v4
-        if: steps.check.outputs.should_run == 'true'
       - uses: actions/setup-python@v5
         if: steps.check.outputs.should_run == 'true'
         with:
