@@ -165,6 +165,17 @@
     color: var(--muted);
     margin-top: 0.3rem;
   }
+  .job-salary {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--new-fg);
+    margin-top: 0.35rem;
+  }
+  .job-salary-unknown {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+  }
   .badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
   .badge {
     display: inline-flex;
@@ -392,6 +403,10 @@ function jobRowHtml(job) {
   if (job.postedDate) metaParts.push(`Posted ${fmtDate(job.postedDate)}`);
   if (job.closingDate) metaParts.push(`Closes ${fmtDate(job.closingDate)}`);
 
+  const salaryHtml = job.salary
+    ? `<div class="job-salary">${job.salary}</div>`
+    : `<div class="job-salary job-salary-unknown">Salary not listed</div>`;
+
   return `
     <li style="--src-color: var(${meta.cssVar});">
       <div class="job-top">
@@ -399,6 +414,7 @@ function jobRowHtml(job) {
         <div class="badges">${badges.join("")}</div>
       </div>
       <div class="job-meta">${metaParts.join(" · ")}</div>
+      ${salaryHtml}
     </li>
   `;
 }

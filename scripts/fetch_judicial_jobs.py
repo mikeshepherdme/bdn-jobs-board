@@ -32,12 +32,13 @@ def main():
     for p in relevant:
         url = JOB_BASE_URL + p["externalPath"]
         firstSeenOn = previous_jobs_by_url.get(url, {}).get("firstSeenOn", today)
-        org, postedDate, closingDate = fetch_job_detail(SITE, p["externalPath"])
+        org, postedDate, closingDate, salary = fetch_job_detail(SITE, p["externalPath"])
         jobs.append(
             {
                 "title": p["title"],
                 "org": org,
                 "location": p.get("locationsText", ""),
+                "salary": salary,
                 "postedDate": postedDate or firstSeenOn,
                 "closingDate": closingDate,
                 "url": url,

@@ -15,7 +15,7 @@ import json
 import re
 import urllib.request
 
-from common import archive_removed, is_relevant, load_json, now_iso, today_iso
+from common import archive_removed, extract_salary, is_relevant, load_json, now_iso, today_iso
 from workday_common import ARCHIVE_PATH
 
 SEARCH_URL = "https://phf.tbe.taleo.net/phf01/ats/careers/v2/searchResults?org=MAINELEGIS&cws=38"
@@ -53,9 +53,10 @@ def fetch_detail(rid):
         location = d.get("jobLocation", {}).get("address", {}).get("addressLocality", "")
         postedDate = (d.get("datePosted") or "")[:10] or None
         closingDate = (d.get("validThrough") or "")[:10] or None
-        return org, location, postedDate, closingDate
+        salary = extract_salary(d.get("description", ""))
+        return org, location, postedDate, closingDate, salary
     except Exception:
-        return "", "", None, None
+        return "", "", None, None, ""
 
 
 def main():
@@ -71,12 +72,13 @@ def main():
     for p in relevant:
         url = DETAIL_URL.format(rid=p["rid"])
         firstSeenOn = previous_jobs_by_url.get(url, {}).get("firstSeenOn", today)
-        org, location, postedDate, closingDate = fetch_detail(p["rid"])
+        org, location, postedDate, closingDate, salary = fetch_detail(p["rid"])
         jobs.append(
             {
                 "title": p["title"],
                 "org": org or p["department"],
                 "location": location,
+                "salary": salary,
                 "postedDate": postedDate or firstSeenOn,
                 "closingDate": closingDate,
                 "url": url,

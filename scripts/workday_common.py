@@ -5,6 +5,8 @@ site name.
 import json
 import urllib.request
 
+from common import extract_salary
+
 PAGE_SIZE = 20  # Workday's API rejects anything larger with HTTP 400
 ARCHIVE_PATH = "data/archive.json"
 
@@ -39,10 +41,10 @@ def fetch_all_postings(site):
 
 
 def fetch_job_detail(site, external_path):
-    """Fetch hiring department + real posted/closing dates for one posting.
-    Only called for already-filtered matches (a handful per run), so the
-    extra request per job is cheap. Returns Nones on any failure so a single
-    bad detail fetch can't take down the whole run.
+    """Fetch hiring department, real posted/closing dates, and a best-effort
+    salary range for one posting. Only called for already-filtered matches (a
+    handful per run), so the extra request per job is cheap. Returns blanks
+    on any failure so a single bad detail fetch can't take down the whole run.
     """
     detail_api_url = f"https://maine.wd5.myworkdayjobs.com/wday/cxs/maine/{site}"
     try:
@@ -51,6 +53,7 @@ def fetch_job_detail(site, external_path):
             detail = json.load(resp)
         org = detail.get("hiringOrganization", {}).get("name", "")
         info = detail.get("jobPostingInfo", {})
-        return org, info.get("startDate"), info.get("endDate")
+        salary = extract_salary(info.get("jobDescription", ""))
+        return org, info.get("startDate"), info.get("endDate"), salary
     except Exception:
-        return "", None, None
+        return "", None, None, ""

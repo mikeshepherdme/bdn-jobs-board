@@ -41,6 +41,43 @@ def is_relevant(title):
     return any(pattern.search(lowered) for pattern in TITLE_KEYWORD_PATTERNS)
 
 
+# Matches a dollar-amount range like "$74,713.60 - $105,809.60/Annually" or
+# "$22.63 - $32.54/Hour". Salary is never a structured field in any of these
+# sources (Workday, Taleo) -- it's embedded in free-text HTML descriptions --
+# so this is a best-effort extraction, not guaranteed to match every posting.
+SALARY_RANGE_PATTERN = re.compile(
+    r"\$[\d,]+(?:\.\d{2})?\s*(?:-|to|–)\s*\$[\d,]+(?:\.\d{2})?"
+    r"(?:\s*/\s*\w+|\s*per\s*\w+|\s*annually|\s*hourly)?",
+    re.IGNORECASE,
+)
+
+# Fallback for a single flat figure rather than a range, e.g. "Salary: $24.64
+# Per Hour". Anchored to the word "salary" immediately followed by a dollar
+# amount (optionally through a colon), so it doesn't pick up unrelated dollar
+# figures elsewhere in a description (benefit values, budget numbers, etc).
+SALARY_SINGLE_PATTERN = re.compile(
+    r"salary\s*:?\s*(\$[\d,]+(?:\.\d{2})?(?:\s*/\s*\w+|\s*per\s*\w+|\s*annually|\s*hourly)?)",
+    re.IGNORECASE,
+)
+
+
+def extract_salary(html_description):
+    """Best-effort salary extraction from a free-text job description (may
+    contain HTML tags). Tries a range first, then a single flat figure.
+    Returns '' if neither pattern is found.
+    """
+    if not html_description:
+        return ""
+    text = re.sub(r"<[^>]+>", " ", html_description)
+    text = text.replace("&nbsp;", " ")
+    text = re.sub(r"\s+", " ", text)
+    m = SALARY_RANGE_PATTERN.search(text)
+    if m:
+        return m.group(0).strip()
+    m = SALARY_SINGLE_PATTERN.search(text)
+    return m.group(1).strip() if m else ""
+
+
 def load_json(path, default):
     try:
         with open(path) as f:
