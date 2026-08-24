@@ -50,88 +50,37 @@
       "name": "Maine Municipal Association Career Center",
       "searchUrl": "https://www.memun.org/Municipal-Career-Center",
       "note": "This site's robots.txt explicitly disallows ClaudeBot site-wide, so it is never scraped automatically. Ask Claude to check this site in Chrome (as a logged-in browser session, not a bot) and update this file when you want it refreshed.",
-      "lastUpdated": "2026-07-29",
+      "lastUpdated": "2026-08-24",
       "jobs": [
-        {
-          "title": "Town Manager",
-          "org": "Town of Houlton",
-          "location": "Aroostook County",
-          "postedDate": "2026-07-16",
-          "closingDate": null,
-          "url": "https://www.memun.org/Municipal-Career-Center/town-manager-town-of-houlton",
-          "firstSeenOn": "2026-07-29"
-        },
-        {
-          "title": "Administrator to the Board of Selectmen (Town Clerk & Treasurer)",
-          "org": "Town of Clifton",
-          "location": "Penobscot County",
-          "postedDate": "2026-07-02",
-          "closingDate": null,
-          "url": "https://www.memun.org/Municipal-Career-Center/administrator-to-the-board-of-selectmen-town-clerk-treasurer",
-          "firstSeenOn": "2026-07-29"
-        },
-        {
-          "title": "Assistant Town Manager",
-          "org": "",
-          "location": "Androscoggin County",
-          "postedDate": "2026-07-01",
-          "closingDate": null,
-          "url": "https://www.memun.org/Municipal-Career-Center/assistant-town-manager",
-          "firstSeenOn": "2026-07-29"
-        },
-        {
-          "title": "Town Manager",
-          "org": "Town of Skowhegan",
-          "location": "Somerset County",
-          "postedDate": "2026-07-01",
-          "closingDate": null,
-          "url": "https://www.memun.org/Municipal-Career-Center/town-manager-town-of-skowhegan",
-          "firstSeenOn": "2026-07-29"
-        },
-        {
-          "title": "Town Manager",
-          "org": "Town of Monson",
-          "location": "Piscataquis County",
-          "postedDate": "2026-06-19",
-          "closingDate": null,
-          "url": "https://www.memun.org/Municipal-Career-Center/town-manager-town-of-monson",
-          "firstSeenOn": "2026-07-29"
-        },
         {
           "title": "County Administrator",
           "org": "Franklin County",
-          "location": "",
+          "location": "Franklin County",
+          "salary": "$91,000 - $115,000",
           "postedDate": "2026-06-16",
           "closingDate": null,
           "url": "https://www.memun.org/Municipal-Career-Center/county-administrator-franklin-county",
           "firstSeenOn": "2026-07-29"
         },
         {
-          "title": "Executive Director",
-          "org": "Midcoast Council of Governments",
-          "location": "Lincoln County",
-          "postedDate": "2026-06-08",
-          "closingDate": null,
-          "url": "https://www.memun.org/Municipal-Career-Center/executive-director-midcoast-council-of-governments",
-          "firstSeenOn": "2026-07-29"
-        },
-        {
           "title": "Town Manager",
           "org": "Town of Belgrade",
           "location": "Kennebec County",
+          "salary": "",
           "postedDate": "2026-04-16",
           "closingDate": null,
           "url": "https://www.memun.org/Municipal-Career-Center/town-manager-2",
           "firstSeenOn": "2026-07-29"
         },
         {
-          "title": "Town Manager / Municipal Finance Officer",
-          "org": "Town of Bingham",
-          "location": "Somerset County",
-          "postedDate": "2026-04-12",
+          "title": "City Manager",
+          "org": "City of Biddeford",
+          "location": "York County",
+          "salary": "$185,000 to $215,000",
+          "postedDate": "2026-07-30",
           "closingDate": null,
-          "url": "https://www.memun.org/Municipal-Career-Center/town-of-bingham-town-manager-municipal-finance-officer",
-          "firstSeenOn": "2026-07-29"
+          "url": "https://www.memun.org/Municipal-Career-Center/city-manager-city-of-biddeford",
+          "firstSeenOn": "2026-08-24"
         }
       ]
     }
