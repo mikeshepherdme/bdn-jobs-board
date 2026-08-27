@@ -1,10 +1,30 @@
 {
   "source": "Maine Executive Branch (Workday)",
   "sourceSearchUrl": "https://maine.wd5.myworkdayjobs.com/Executive",
-  "generatedAt": "2026-08-26T11:33:45+00:00",
-  "totalPostings": 237,
-  "matchedPostings": 2,
+  "generatedAt": "2026-08-27T20:56:12+00:00",
+  "totalPostings": 254,
+  "matchedPostings": 4,
   "jobs": [
+    {
+      "title": "Emergency Communications Specialist - Multiple Vacancies - Bangor",
+      "org": "Department of Public Safety",
+      "location": "No Address - Bangor",
+      "salary": "$26.88 - $35.74/Hour",
+      "postedDate": "2026-08-27",
+      "closingDate": "2026-09-12",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/No-Address---Bangor/Emergency-Communications-Specialist---Multiple-Vacancies---Bangor_R26-03638",
+      "firstSeenOn": "2026-08-27"
+    },
+    {
+      "title": "Director of the Maine State Approving Agency - Public Service Coordinator I",
+      "org": "Department of Defense, Veterans, and Emergency Management",
+      "location": "Augusta, Maine",
+      "salary": "$67,267.20 - $95,097.60/Annually",
+      "postedDate": "2026-08-27",
+      "closingDate": "2026-09-12",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Director-of-the-Maine-State-Approving-Agency---Public-Service-Coordinator-I_R26-03595",
+      "firstSeenOn": "2026-08-27"
+    },
     {
       "title": "MaineCare Behavioral Health Services Policy Writer",
       "org": "Department of Health and Human Services",
