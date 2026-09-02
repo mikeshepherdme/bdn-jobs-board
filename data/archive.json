@@ -170,6 +170,15 @@
       "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=253",
       "firstSeenOn": "2026-08-12",
       "removedOn": "2026-08-31"
+    },
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "Senior Policy Manager",
+      "org": "Department of Health and Human Services",
+      "location": "Augusta, Maine",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Senior-Policy-Manager_R26-01974",
+      "firstSeenOn": "2026-08-20",
+      "removedOn": "2026-09-02"
     }
   ]
 }
