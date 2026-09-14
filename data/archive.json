@@ -197,6 +197,33 @@
       "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=251",
       "firstSeenOn": "2026-08-11",
       "removedOn": "2026-09-08"
+    },
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "Emergency Communications Specialist - Multiple Vacancies - Augusta",
+      "org": "Department of Public Safety",
+      "location": "",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Emergency-Communications-Specialist---Multiple-Vacancies---Augusta_R26-03641",
+      "firstSeenOn": "2026-08-28",
+      "removedOn": "2026-09-14"
+    },
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "Emergency Communications Specialist - Multiple Vacancies - Bangor",
+      "org": "Department of Public Safety",
+      "location": "No Address - Bangor",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/No-Address---Bangor/Emergency-Communications-Specialist---Multiple-Vacancies---Bangor_R26-03638",
+      "firstSeenOn": "2026-08-27",
+      "removedOn": "2026-09-14"
+    },
+    {
+      "source": "Maine Executive Branch (Workday)",
+      "title": "Director of the Maine State Approving Agency - Public Service Coordinator I",
+      "org": "Department of Defense, Veterans, and Emergency Management",
+      "location": "Augusta, Maine",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Director-of-the-Maine-State-Approving-Agency---Public-Service-Coordinator-I_R26-03595",
+      "firstSeenOn": "2026-08-27",
+      "removedOn": "2026-09-14"
     }
   ]
 }
