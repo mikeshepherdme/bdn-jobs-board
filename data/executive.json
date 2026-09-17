@@ -1,8 +1,19 @@
 {
   "source": "Maine Executive Branch (Workday)",
   "sourceSearchUrl": "https://maine.wd5.myworkdayjobs.com/Executive",
-  "generatedAt": "2026-09-16T15:21:40+00:00",
-  "totalPostings": 200,
-  "matchedPostings": 0,
-  "jobs": []
+  "generatedAt": "2026-09-17T15:28:19+00:00",
+  "totalPostings": 214,
+  "matchedPostings": 1,
+  "jobs": [
+    {
+      "title": "Office Associate II- Office of the State Auditor",
+      "org": "Office of the State Auditor",
+      "location": "Augusta, Maine",
+      "salary": "$36,883.60 \u2013 $53,108.12",
+      "postedDate": "2026-09-16",
+      "closingDate": "2026-10-01",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Office-Associate-II--Office-of-the-State-Auditor_R26-03883",
+      "firstSeenOn": "2026-09-17"
+    }
+  ]
 }
