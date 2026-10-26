@@ -1,8 +1,19 @@
 {
   "source": "Maine Legislature (Taleo)",
   "sourceSearchUrl": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/searchResults?org=MAINELEGIS&cws=38",
-  "generatedAt": "2026-10-23T15:40:19+00:00",
-  "totalPostings": 0,
-  "matchedPostings": 0,
-  "jobs": []
+  "generatedAt": "2026-10-26T17:10:51+00:00",
+  "totalPostings": 1,
+  "matchedPostings": 1,
+  "jobs": [
+    {
+      "title": "Legislative Fiscal Analyst",
+      "org": "Maine State Legislature",
+      "location": "Augusta, ME",
+      "salary": "$81,744 to $118,456",
+      "postedDate": "2026-10-23",
+      "closingDate": null,
+      "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=256",
+      "firstSeenOn": "2026-10-26"
+    }
+  ]
 }

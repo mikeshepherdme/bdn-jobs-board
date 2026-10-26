@@ -1,10 +1,20 @@
 {
   "source": "Maine Executive Branch (Workday)",
   "sourceSearchUrl": "https://maine.wd5.myworkdayjobs.com/Executive",
-  "generatedAt": "2026-10-23T15:40:18+00:00",
-  "totalPostings": 234,
+  "generatedAt": "2026-10-26T17:10:49+00:00",
+  "totalPostings": 225,
   "matchedPostings": 8,
   "jobs": [
+    {
+      "title": "OFI Communications and Engagement Specialist",
+      "org": "Department of Health and Human Services",
+      "location": "Augusta, Maine",
+      "salary": "$23.07 - $32.29 per hour",
+      "postedDate": "2026-10-23",
+      "closingDate": "2026-11-06",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/OFI-Communications-and-Engagement-Specialist_R26-04449-1",
+      "firstSeenOn": "2026-10-26"
+    },
     {
       "title": "Director of Workforce Development/HR Liaison - DHHS",
       "org": "Department of Health and Human Services",
@@ -74,16 +84,6 @@
       "closingDate": "2026-10-27",
       "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/MaineCare-Medical-Director_R26-04280",
       "firstSeenOn": "2026-10-13"
-    },
-    {
-      "title": "Senior Financial Advisor - Public Service Coordinator I",
-      "org": "Department of Defense, Veterans, and Emergency Management",
-      "location": "Augusta, Maine",
-      "salary": "$69,180.80 - $98,280.00/Annually",
-      "postedDate": "2026-10-09",
-      "closingDate": "2026-10-26",
-      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Senior-Financial-Advisor---Public-Service-Coordinator-I_R26-03989",
-      "firstSeenOn": "2026-09-25"
     }
   ]
 }
