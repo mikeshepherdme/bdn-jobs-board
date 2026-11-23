@@ -1,8 +1,19 @@
 {
   "source": "Maine Legislature (Taleo)",
   "sourceSearchUrl": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/searchResults?org=MAINELEGIS&cws=38",
-  "generatedAt": "2026-11-20T18:59:59+00:00",
-  "totalPostings": 1,
-  "matchedPostings": 0,
-  "jobs": []
+  "generatedAt": "2026-11-23T22:29:13+00:00",
+  "totalPostings": 3,
+  "matchedPostings": 1,
+  "jobs": [
+    {
+      "title": "Communications Director",
+      "org": "Maine State Legislature",
+      "location": "Augusta, ME",
+      "salary": "",
+      "postedDate": "Mon Nov 23",
+      "closingDate": null,
+      "url": "https://phf.tbe.taleo.net/phf01/ats/careers/v2/viewRequisition?org=MAINELEGIS&cws=38&rid=259",
+      "firstSeenOn": "2026-11-23"
+    }
+  ]
 }

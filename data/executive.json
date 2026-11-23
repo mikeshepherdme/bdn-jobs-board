@@ -1,10 +1,30 @@
 {
   "source": "Maine Executive Branch (Workday)",
   "sourceSearchUrl": "https://maine.wd5.myworkdayjobs.com/Executive",
-  "generatedAt": "2026-11-20T18:59:57+00:00",
-  "totalPostings": 252,
-  "matchedPostings": 3,
+  "generatedAt": "2026-11-23T22:29:12+00:00",
+  "totalPostings": 264,
+  "matchedPostings": 5,
   "jobs": [
+    {
+      "title": "Public Service Coordinator II (Director of IF&W IT) - 0003 - Augusta (Anticipated Vacancy)",
+      "org": "Department of Inland Fisheries and Wildlife",
+      "location": "Augusta, Maine",
+      "salary": "$81,411.20 - $115,024.00 Per Year",
+      "postedDate": "2026-11-23",
+      "closingDate": "2026-12-10",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/Augusta-Maine/Public-Service-Coordinator-II--Director-of-IF-W-IT----0003---Augusta--Anticipated-Vacancy-_R26-04918",
+      "firstSeenOn": "2026-11-23"
+    },
+    {
+      "title": "Public Service Coordinator I (Policy and Planning Coordinator) - 0999 - Augusta",
+      "org": "Department of Agriculture, Conservation, and Forestry",
+      "location": "No Address - Augusta",
+      "salary": "$59,384.00 - $84,136.00 Per Year",
+      "postedDate": "2026-11-20",
+      "closingDate": "2026-12-09",
+      "url": "https://maine.wd5.myworkdayjobs.com/Executive/job/No-Address---Augusta/Public-Service-Coordinator-I--Policy-and-Planning-Coordinator----0999---Augusta_R26-04910",
+      "firstSeenOn": "2026-11-23"
+    },
     {
       "title": "Policy Manager",
       "org": "Department of Health and Human Services",
